@@ -6,16 +6,28 @@ from datetime import date
 
 # Create your tests here.
 class Test(TestCase):
-    def test_post_todo_create_creates_object(self):
-        data = {
-            "title": "Aprender Django",
-            "description": "Crear una app de tareas",
-            "due_date": date.today().isoformat(),  # formato YYYY-MM-DD
-            "completed": False,
-        }
-        response = self.client.post(reverse("todo_create"), data)
 
+    def setUp(self):
+        self.todo = Todo.objects.create(
+            title="Tarea de prueba",
+            description="Descripción de prueba",
+            due_date=date.today(),
+            completed=False,
+        )
+
+    def test_get_delete_view(self):
+        url = reverse("todo_delete", args=[self.todo.pk])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Tarea de prueba")
+
+    def test_post_delete_view(self):
+        url = reverse("todo_delete", args=[self.todo.pk])
+        response = self.client.post(url)
+
+        # Verifica redirección
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("todo_list"))
-        self.assertEqual(Todo.objects.count(), 1)
-        self.assertEqual(Todo.objects.first().title, "Aprender Django")
+
+        # Verifica que se haya eliminado
+        self.assertFalse(Todo.objects.filter(pk=self.todo.pk).exists())
