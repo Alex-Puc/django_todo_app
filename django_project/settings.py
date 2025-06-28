@@ -24,7 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+SECRET_KEY = os.getenv(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-tx7z@4$%1k!n0r8s*2bqv#l9m&z7w+3f^u@o%ygxjhd4t!p",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DJANGO_DEBUG") == "True"
@@ -83,15 +86,15 @@ WSGI_APPLICATION = "django_project.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": os.environ.get("DATABASE_ENGINE"),
-        "NAME": os.environ.get("DATABASE_NAME"),
-        "USER": os.environ.get("DATABASE_USER"),
-        "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
+        "ENGINE": os.environ.get("DATABASE_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("DATABASE_NAME", BASE_DIR / "db.sqlite3"),
+        "USER": os.environ.get("DATABASE_USER", ""),
+        "PASSWORD": os.environ.get("DATABASE_PASSWORD", ""),
         "HOST": os.environ.get(
-            "DATABASE_HOST"
+            "DATABASE_HOST", "localhost"
         ),  # For local development, use 'localhost' or '127.0.0.1'
         "PORT": os.environ.get(
-            "DATABASE_PORT"
+            "DATABASE_PORT", ""
         ),  # Default PostgreSQL port is usually '5432'
     }
 }
