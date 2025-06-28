@@ -1,4 +1,4 @@
-#!/home/mercy/django/venv/bin/python3
+#!/Users/alexricardopuckumul/Desktop/backend/Untitled/django_todo_app/venv/bin/python3.13
 # -*- coding: utf-8 -*-
 import re
 import sys
