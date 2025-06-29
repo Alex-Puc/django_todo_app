@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "todo_app",
+    'rest_framework',
+    'rest_framework_simplejwt',
     "drf_spectacular"
 ]
 
@@ -153,4 +155,14 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'LOYALTY API XCARET',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
 }
