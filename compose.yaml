@@ -34,16 +34,13 @@ services:
     depends_on:
       - db
 
-  caddy:
-    image: caddy:alpine
-    container_name: loyalty-api-caddy
-    ports:
-      - 80:80
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - ./staticfiles:/srv/staticfiles
-    depends_on:
-      - web
-
-volumes:
-  pg_data:
+  #caddy:
+    #image: caddy:alpine
+    #container_name: loyalty-api-caddy
+    #ports:
+      #- 80:80
+    #volumes:
+      #- ./Caddyfile:/etc/caddy/Caddyfile
+      #- ./staticfiles:/srv/staticfiles
+    #depends_on:
+      #- web
