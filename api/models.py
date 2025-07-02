@@ -45,4 +45,4 @@ class Newsfeed(TranslatableModel):
         verbose_name_plural = "Newsfeed"
 
     def __str__(self):
-        return self.title
+        return self.safe_translation_getter('title', any_language=True) or " "
