@@ -1,0 +1,8 @@
+:80 {
+    handle_path /static/* {
+        root * /srv/staticfiles
+        file_server
+    }
+
+    reverse_proxy loyalty-api-app:8000
+}
