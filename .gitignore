@@ -1,7 +1,6 @@
 .env
 venv
 media
-migrations
 staticfiles
 **/__pycache__/*
 *.pyc
