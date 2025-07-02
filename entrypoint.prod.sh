@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ptyhon manage.py makemigrations api
+ptyhon manage.py makemigrations api --noinput
 python manage.py migrate api --noinput
 python manage.py collectstatic --noinput
 python manage.py create_superuser 
